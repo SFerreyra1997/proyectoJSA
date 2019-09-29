@@ -3,7 +3,7 @@ var router = express.Router();
 var Objeto = require("../models/objeto");
 
 router
-    .route("/objeto")
+    .route("/objetos")
     .get((req,res) => {
         Objeto.find((err, objetos) => {
             res.json(objetos);
@@ -22,10 +22,24 @@ router
         });
     });
 
+
     router
-        .route("/objeto/:id")
+        .route("/objetos/encontrarPorOrden")
         .get((req,res) => {
-            Objeto.findById(req.params.id,function(err,Objeto){
+            const { numeroOrden} = req.body;
+            Objeto.find({numeroOrden:numeroOrden},function(err,Objeto){
+            try {
+                res.json(Objeto);
+            } catch (err) {
+                res.json({message: "EL ID NO EXISTE"});
+            }
+        })
+    });
+
+    router
+        .route("/objetos/:id")
+        .get((req,res) => {
+            Objeto.find(req.params.id,function(err,Objeto){
                 try {
                     res.json(Objeto);
                 } catch (err) {
@@ -66,18 +80,5 @@ router
                 }
             })
         });
-        router
-        .route("/objeto/estado/:estado")
-        .get((req,res) => {
-            Objeto.findById(req.params.estado,function(err,Objeto){
-                try {
-                    res.json(Objeto);
-                } catch (err) {
-                    res.json({message: "NO HAY OBJETOS CON ESE ESTADO"});
-                }
-            })
-        })
-        ;
-
     module.exports = router;
     
