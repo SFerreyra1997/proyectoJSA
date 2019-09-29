@@ -31,7 +31,7 @@ router
             try {
                 res.json(Objeto);
             } catch (err) {
-                res.json({message: "EL ID NO EXISTE"});
+                res.json({message: "EL numero de orden no existe"});
             }
         })
     });
