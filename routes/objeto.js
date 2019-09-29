@@ -22,24 +22,23 @@ router
         });
     });
 
-
     router
-        .route("/objetos/encontrarPorOrden")
-        .get((req,res) => {
-            const { numeroOrden} = req.body;
-            Objeto.find({numeroOrden:numeroOrden},function(err,Objeto){
+    .route("/objetos/encontrarPorOrden")
+    .get((req,res) => {
+        const { numeroOrden} = req.body;
+        Objeto.find({numeroOrden:numeroOrden},function(err,Objeto){
             try {
                 res.json(Objeto);
             } catch (err) {
-                res.json({message: "EL numero de orden no existe"});
+                res.json({message: "EL ID NO EXISTE"});
             }
         })
     });
-
     router
         .route("/objetos/:id")
         .get((req,res) => {
-            Objeto.find(req.params.id,function(err,Objeto){
+            Objeto.findById(req.params.id,function(err,Objeto){
+                console.log(Objeto);
                 try {
                     res.json(Objeto);
                 } catch (err) {
@@ -80,5 +79,6 @@ router
                 }
             })
         });
+        
     module.exports = router;
     
