@@ -1,4 +1,4 @@
 {
     "port": 3000,
-    "mongo_url": "mongodb+srv://matisixsix:matisixsix@bdproyectojsa-r0qox.mongodb.net/test?retryWrites=true&w=majority"
+    "mongo_url": "mongodb+srv://Santiago:Santiago@bdproyecto-vptzy.mongodb.net/test?retryWrites=true&w=majority"
 }
